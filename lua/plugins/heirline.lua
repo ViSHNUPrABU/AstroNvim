@@ -15,7 +15,18 @@ return {
       },
       statusline = { -- statusline
         hl = { fg = "fg", bg = "bg" },
-        status.component.mode(),
+        -- status.component.mode(),
+        status.component.mode({
+          mode_text = {
+            padding = {
+              left = 1, right = 1,
+            },
+          },
+          surround = {
+            separator = "left",
+            color = function() return { main = status.hl.mode_bg(), } end,
+          },
+        }),
         status.component.git_branch(),
         status.component.file_info { filetype = {}, filename = false, file_modified = false },
         status.component.git_diff(),
@@ -26,7 +37,7 @@ return {
         status.component.lsp(),
         status.component.treesitter(),
         status.component.nav(),
-        status.component.mode { surround = { separator = "right" } },
+        -- status.component.mode { surround = { separator = "right" } },
       },
       winbar = { -- winbar
         init = function(self) self.bufnr = vim.api.nvim_get_current_buf() end,

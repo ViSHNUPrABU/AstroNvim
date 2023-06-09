@@ -26,6 +26,14 @@ return {
         end,
         config = require "plugins.configs.mason-lspconfig",
       },
+      {
+        "SmiteshP/nvim-navbuddy",
+        dependencies = {
+          "SmiteshP/nvim-navic",
+          "MunifTanjim/nui.nvim"
+        },
+        opts = { lsp = { auto_attach = true } }
+      }
     },
     event = "User AstroFile",
     config = require "plugins.configs.lspconfig",

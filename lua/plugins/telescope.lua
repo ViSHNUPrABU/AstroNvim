@@ -2,6 +2,7 @@ return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
     { "nvim-telescope/telescope-fzf-native.nvim", enabled = vim.fn.executable "make" == 1, build = "make" },
+    { "nvim-telescope/telescope-live-grep-args.nvim" },
   },
   cmd = "Telescope",
   opts = function()
@@ -30,7 +31,7 @@ return {
           n = { q = actions.close },
         },
       },
+      extensions_list = { "themes", "terms" },
     }
   end,
-  config = require "plugins.configs.telescope",
 }

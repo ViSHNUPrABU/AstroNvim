@@ -1,10 +1,11 @@
 return {
   "nvim-lua/plenary.nvim",
-  { "AstroNvim/astrotheme", opts = { plugins = { ["dashboard-nvim"] = true } } },
-  { "famiu/bufdelete.nvim", cmd = { "Bdelete", "Bwipeout" } },
-  { "max397574/better-escape.nvim", event = "InsertCharPre", opts = { timeout = 300 } },
-  { "NMAC427/guess-indent.nvim", event = "User AstroFile", config = require "plugins.configs.guess-indent" },
-  { -- TODO: REMOVE neovim-session-manager with AstroNvim v4
+  { "AstroNvim/astrotheme",         opts = { plugins = { ["dashboard-nvim"] = true } } },
+  { "famiu/bufdelete.nvim",         cmd = { "Bdelete", "Bwipeout" } },
+  { "max397574/better-escape.nvim", event = "InsertCharPre",                           opts = { timeout = 300 } },
+  { "NMAC427/guess-indent.nvim",    event = "User AstroFile",                          config = require "plugins.configs.guess-indent" },
+  {
+    -- TODO: REMOVE neovim-session-manager with AstroNvim v4
     "Shatur/neovim-session-manager",
     event = "BufWritePost",
     cmd = "SessionManager",
@@ -76,12 +77,12 @@ return {
         end
 
         return (filetype == "" or buftype == "nofile") and "indent" -- only use indent until a file is opened
-          or function(bufnr)
-            return require("ufo")
-              .getFolds(bufnr, "lsp")
-              :catch(function(err) return handleFallbackException(bufnr, err, "treesitter") end)
-              :catch(function(err) return handleFallbackException(bufnr, err, "indent") end)
-          end
+            or function(bufnr)
+              return require("ufo")
+                  .getFolds(bufnr, "lsp")
+                  :catch(function(err) return handleFallbackException(bufnr, err, "treesitter") end)
+                  :catch(function(err) return handleFallbackException(bufnr, err, "indent") end)
+            end
       end,
     },
   },
@@ -114,4 +115,91 @@ return {
       },
     },
   },
+  {
+    "preservim/tagbar",
+    cmd = { "TagbarToggle" },
+  },
+  {
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    opts = {},
+  },
+  {
+    "tpope/vim-fugitive",
+    cmd = { "Git", "Gvdiffsplit" },
+  },
+  {
+    "mg979/vim-visual-multi",
+    opts = {},
+    config = function()
+    end,
+  },
+  {
+    "themercorp/themer.lua",
+    event = { "User AstroFile" },
+    config = function()
+      require("themer").setup({
+        colorscheme = "catppuccin",
+        styles = {
+          ["function"]    = { style = 'italic' },
+          functionbuiltin = { style = 'italic' },
+          variable        = { style = 'italic' },
+          variableBuiltIn = { style = 'italic' },
+          parameter       = { style = 'italic' },
+        },
+      })
+    end
+  },
+  {
+    "Wansmer/treesj",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
+    opts = { use_default_keymaps = false },
+  },
+  {
+    "f-person/git-blame.nvim",
+    event = { "VeryLazy" },
+  },
+  {
+    "akinsho/flutter-tools.nvim",
+    lazy = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "stevearc/dressing.nvim", -- optional for vim.ui.select
+    },
+    config = function()
+      require("flutter-tools").setup {
+        outline = {
+          lsp = {
+            on_attach = require("astronvim.utils.lsp").on_attach,
+          }
+        },
+        lsp = {
+          on_attach = require("astronvim.utils.lsp").on_attach,
+        }
+      }
+    end,
+  },
+  {
+    "rmagatti/goto-preview",
+    config = function()
+      require('goto-preview').setup {
+        lsp = {
+          on_attach = require("astronvim.utils.lsp").on_attach,
+        },
+      }
+    end
+  },
+  {
+    "mbbill/undotree",
+    cmd = { "UndotreeToggle" },
+    opts = { use_default_keymaps = false },
+    config = function()
+    end,
+  },
+  {
+    "alec-gibson/nvim-tetris",
+    cmd = { "Tetris" },
+  }
 }

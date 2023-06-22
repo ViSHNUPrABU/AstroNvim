@@ -201,5 +201,12 @@ return {
   {
     "alec-gibson/nvim-tetris",
     cmd = { "Tetris" },
+  },
+  {
+    "metakirby5/codi.vim",
+    cmd = { "Codi", "CodiSelect", "CodiExpand" },
   }
+  -- {
+  --   "neoclide/coc.nvim",
+  -- },
 }

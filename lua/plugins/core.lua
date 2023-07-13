@@ -1,11 +1,10 @@
 return {
   "nvim-lua/plenary.nvim",
-  { "AstroNvim/astrotheme",         opts = { plugins = { ["dashboard-nvim"] = true } } },
-  { "famiu/bufdelete.nvim",         cmd = { "Bdelete", "Bwipeout" } },
-  { "max397574/better-escape.nvim", event = "InsertCharPre",                           opts = { timeout = 300 } },
-  { "NMAC427/guess-indent.nvim",    event = "User AstroFile",                          config = require "plugins.configs.guess-indent" },
-  {
-    -- TODO: REMOVE neovim-session-manager with AstroNvim v4
+  "echasnovski/mini.bufremove",
+  { "AstroNvim/astrotheme", opts = { plugins = { ["dashboard-nvim"] = true } } },
+  { "max397574/better-escape.nvim", event = "InsertCharPre", opts = { timeout = 300 } },
+  { "NMAC427/guess-indent.nvim", event = "User AstroFile", config = require "plugins.configs.guess-indent" },
+  { -- TODO: REMOVE neovim-session-manager with AstroNvim v4
     "Shatur/neovim-session-manager",
     event = "BufWritePost",
     cmd = "SessionManager",
@@ -23,13 +22,7 @@ return {
   {
     "s1n7ax/nvim-window-picker",
     name = "window-picker",
-    opts = {
-      picker_config = {
-        statusline_winbar_picker = {
-          use_winbar = "smart",
-        },
-      },
-    },
+    opts = { picker_config = { statusline_winbar_picker = { use_winbar = "smart" } } },
   },
   {
     "mrjones2014/smart-splits.nvim",

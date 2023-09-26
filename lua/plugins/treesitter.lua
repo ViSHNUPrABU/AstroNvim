@@ -3,6 +3,7 @@ return {
   dependencies = {
     "JoosepAlviste/nvim-ts-context-commentstring",
     "nvim-treesitter/nvim-treesitter-textobjects",
+    "nvim-treesitter/nvim-tree-docs",
     "windwp/nvim-ts-autotag",
   },
   event = "User AstroFile",
@@ -32,6 +33,9 @@ return {
       },
       incremental_selection = { enable = true },
       indent = { enable = true },
+      tree_docs = {
+        enable = true,
+      },
       textobjects = {
         select = {
           enable = true,

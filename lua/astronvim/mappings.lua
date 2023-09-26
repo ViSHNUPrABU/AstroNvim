@@ -120,6 +120,9 @@ maps.n["<leader>b|"] = {
 -- maps.n["]t"] = { function() vim.cmd.tabnext() end, desc = "Next tab" }
 -- maps.n["[t"] = { function() vim.cmd.tabprevious() end, desc = "Previous tab" }
 
+-- Doge Vim for Comments
+maps.n["gC"] = { "<cmd>DogeGenerate<cr>", desc = "Generate Comments" }
+
 -- Tab Operations
 maps.n["<leader>w"] = sections.w
 maps.n["<leader>wl"] = { function() vim.cmd.tabnext() end, desc = "Next tab" }

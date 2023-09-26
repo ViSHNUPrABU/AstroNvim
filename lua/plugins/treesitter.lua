@@ -4,7 +4,8 @@ return {
     "JoosepAlviste/nvim-ts-context-commentstring",
     "nvim-treesitter/nvim-treesitter-textobjects",
     "nvim-treesitter/nvim-tree-docs",
-    "windwp/nvim-ts-autotag",
+    -- HACK: remove when https://github.com/windwp/nvim-ts-autotag/issues/125 closed.
+    { "windwp/nvim-ts-autotag", opts = { autotag = { enable_close_on_slash = false } } },
   },
   event = "User AstroFile",
   cmd = {
@@ -29,7 +30,7 @@ return {
       context_commentstring = { enable = true, enable_autocmd = false },
       highlight = {
         enable = true,
-        disable = function(_, bufnr) return vim.api.nvim_buf_line_count(bufnr) > 10000 end,
+        disable = function(_, bufnr) return vim.b[bufnr].large_buf end,
       },
       incremental_selection = { enable = true },
       indent = { enable = true },

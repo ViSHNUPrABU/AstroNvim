@@ -220,18 +220,43 @@ return {
     "kkoomen/vim-doge",
     cmd = { "DogeGenerate" },
   },
+  -- {
+  --   "jackMort/ChatGPT.nvim",
+  --   event = "VeryLazy",
+  --   dependencies = {
+  --     "MunifTanjim/nui.nvim",
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-telescope/telescope.nvim"
+  --   },
+  --   config = function()
+  --     require("chatgpt").setup({
+  --       api_key_cmd = "pass show openai/four"
+  --     })
+  --   end,
+  -- },
   {
-    "jackMort/ChatGPT.nvim",
-    event = "VeryLazy",
+    'VonHeikemen/fine-cmdline.nvim',
     dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim"
+      'MunifTanjim/nui.nvim'
     },
-    config = function()
-      require("chatgpt").setup({
-        api_key_cmd = "pass show openai/four"
-      })
+    cmd = { "FineCmdline" },
+  },
+  {
+    'kristijanhusak/vim-dadbod-ui',
+    dependencies = {
+      'tpope/vim-dadbod',
+      'kristijanhusak/vim-dadbod-completion',
+    },
+    cmd = {
+      "DB",
+      'DBUI',
+      'DBUIToggle',
+      'DBUIAddConnection',
+      'DBUIFindBuffer',
+    },
+    init = function()
+      -- Your DBUI configuration
+      vim.g.db_ui_use_nerd_fonts = 1
     end,
   },
   -- {

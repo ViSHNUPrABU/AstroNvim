@@ -17,14 +17,16 @@ local sections = {
   g = { desc = get_icon("Git", 1, true) .. "Git" },
   S = { desc = get_icon("Session", 1, true) .. "Session" },
   t = { desc = get_icon("Terminal", 1, true) .. "Terminal" },
-  w = { desc = "Window" },
   P = { desc = "Go to Preview" },
+  w = { desc = "Window" },
+  z = { desc = "Extras" },
 }
 
 -- Normal --
 -- Standard Operations
 maps.n["j"] = { "v:count == 0 ? 'gj' : 'j'", expr = true, desc = "Move cursor down" }
 maps.n["k"] = { "v:count == 0 ? 'gk' : 'k'", expr = true, desc = "Move cursor up" }
+maps.n["<leader>:"] = { "<cmd>FineCmdline<cr>", desc = "Fine Command Line" }
 maps.n["<leader>s"] = { "<cmd>w<cr>", desc = "Save" }
 maps.n["<leader>q"] = { "<cmd>confirm q<cr>", desc = "Quit" }
 maps.n["<leader>n"] = { "<cmd>enew<cr>", desc = "New File" }
@@ -185,8 +187,10 @@ maps.n["<leader>Pi"] = { function() require('goto-preview').goto_preview_impleme
 maps.n["<leader>Pc"] = { function() require('goto-preview').close_all_win() end, desc = "Close All Win" }
 maps.n["<leader>Pr"] = { function() require('goto-preview').goto_preview_references() end, desc = "Goto Preview References" }
 
+-- One command Mappings
 -- Nav Buddy
-maps.n["<leader>Nb"] = { "<cmd>Navbuddy<cr>", desc = "Nav Buddy" }
+maps.n["<leader>z"] = sections.z
+maps.n["<leader>zn"] = { "<cmd>Navbuddy<cr>", desc = "Nav Buddy" }
 
 -- NeoTree
 if is_available "neo-tree.nvim" then
@@ -310,6 +314,7 @@ if is_available "telescope.nvim" then
     desc = "Find all files",
   }
   maps.n["<leader>fh"] = { function() require("telescope.builtin").help_tags() end, desc = "Find help" }
+  maps.n["<leader>fH"] = { function() require("telescope.builtin").command_history() end, desc = "Find Command History" }
   maps.n["<leader>fk"] = { function() require("telescope.builtin").keymaps() end, desc = "Find keymaps" }
   maps.n["<leader>fm"] = { function() require("telescope.builtin").man_pages() end, desc = "Find man" }
   if is_available "nvim-notify" then
@@ -318,6 +323,7 @@ if is_available "telescope.nvim" then
   end
   maps.n["<leader>fo"] = { function() require("telescope.builtin").oldfiles() end, desc = "Find history" }
   maps.n["<leader>fr"] = { function() require("telescope.builtin").registers() end, desc = "Find registers" }
+  maps.n["<leader>fs"] = { function() require("telescope.builtin").treesitter() end, desc = "Find symbols" }
   maps.n["<leader>ft"] =
   { function() require("telescope.builtin").colorscheme { enable_preview = true } end, desc = "Find themes" }
   maps.n["<leader>fw"] = { function() require("telescope.builtin").live_grep() end, desc = "Find words" }

@@ -60,6 +60,9 @@ return {
     end,
     event = "User AstroFile",
     config = require "plugins.configs.lspconfig",
+    opts = function() require("lspconfig").eslint.setup({
+      filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue", "svelte", "astro", "html", "scss" }
+    }) end,
   },
   {
     "jose-elias-alvarez/null-ls.nvim",

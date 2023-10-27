@@ -17,6 +17,7 @@ local sections = {
   g = { desc = get_icon("Git", 1, true) .. "Git" },
   S = { desc = get_icon("Session", 1, true) .. "Session" },
   t = { desc = get_icon("Terminal", 1, true) .. "Terminal" },
+  G = { desc = "Git WorkTrees" },
   P = { desc = "Go to Preview" },
   w = { desc = "Window" },
   z = { desc = "Extras" },
@@ -179,18 +180,25 @@ if is_available "gitsigns.nvim" then
   maps.n["<leader>gd"] = { function() require("gitsigns").diffthis() end, desc = "View Git diff" }
 end
 
+-- Git Worktrees
+maps.n["<leader>G"] = sections.G
+maps.n["<leader>Gl"] = { function() require("telescope").extensions.git_worktree.git_worktrees() end, desc = "Git Worktree List" }
+maps.n["<leader>Gc"] = { function() require("telescope").extensions.git_worktree.create_git_worktree() end, desc = "Create Git Worktree" }
+
 -- Goto Preview
 maps.n["<leader>P"] = sections.P
-maps.n["<leader>Pd"] = { function() require('goto-preview').goto_preview_definition() end, desc = "Goto Preview Definition" }
-maps.n["<leader>Pt"] = { function() require('goto-preview').goto_preview_type_definition() end, desc = "Goto Preview Type Definition" }
-maps.n["<leader>Pi"] = { function() require('goto-preview').goto_preview_implementation() end, desc = "Goto Preview Implementation" }
-maps.n["<leader>Pc"] = { function() require('goto-preview').close_all_win() end, desc = "Close All Win" }
-maps.n["<leader>Pr"] = { function() require('goto-preview').goto_preview_references() end, desc = "Goto Preview References" }
+maps.n["<leader>Pd"] = { function() require("goto-preview").goto_preview_definition() end, desc = "Goto Preview Definition" }
+maps.n["<leader>Pt"] = { function() require("goto-preview").goto_preview_type_definition() end, desc = "Goto Preview Type Definition" }
+maps.n["<leader>Pi"] = { function() require("goto-preview").goto_preview_implementation() end, desc = "Goto Preview Implementation" }
+maps.n["<leader>Pc"] = { function() require("goto-preview").close_all_win() end, desc = "Close All Win" }
+maps.n["<leader>Pr"] = { function() require("goto-preview").goto_preview_references() end, desc = "Goto Preview References" }
 
 -- One command Mappings
 -- Nav Buddy
 maps.n["<leader>z"] = sections.z
 maps.n["<leader>zn"] = { "<cmd>Navbuddy<cr>", desc = "Nav Buddy" }
+maps.n["<leader>zm"] = { "<cmd>TSJToggle<cr>", desc = "Toggle Tree" }
+maps.n["<leader>zu"] = { "<cmd>UndotreeToggle<cr>", desc = "Undo Tree Toggle" }
 
 -- NeoTree
 if is_available "neo-tree.nvim" then
@@ -341,8 +349,6 @@ if is_available "telescope.nvim" then
   }
   maps.n["<leader>fl"] = { function() require("telescope").extensions.flutter.commands() end, desc = "Flutter Commands" }
   maps.n["<leader>fL"] = { function() require("telescope").extensions.flutter.fvm() end, desc = "Flutter Fvm Commands" }
-  maps.n["<leader>m"] = { "<cmd>TSJToggle<cr>", desc = "Toggle Tree" }
-  maps.n["<leader>U"] = { "<cmd>UndotreeToggle<cr>", desc = "Undo Tree Toggle" }
   maps.n["<leader>l"] = sections.l
   maps.n["<leader>ls"] = {
     function()

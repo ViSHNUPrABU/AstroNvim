@@ -16,10 +16,10 @@ if vim.g.neovide then
   vim.cmd("set guifont=MesloLGS\\ NF:h10")
 end
 
-if astronvim.default_colorscheme then
-  if not pcall(vim.cmd.colorscheme, astronvim.default_colorscheme) then
+if astronvim.v7_colorscheme then
+  if not pcall(vim.cmd.colorscheme, astronvim.v7_colorscheme) then
     require("astronvim.utils").notify(
-      ("Error setting up colorscheme: `%s`"):format(astronvim.default_colorscheme),
+      ("Error setting up colorscheme: `%s`"):format(astronvim.v7_colorscheme),
       vim.log.levels.ERROR
     )
   end

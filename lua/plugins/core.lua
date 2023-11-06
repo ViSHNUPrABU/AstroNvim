@@ -146,21 +146,28 @@ return {
     end,
   },
   {
-    "themercorp/themer.lua",
-    event = { "User AstroFile" },
+    "catppuccin/nvim",
+    name = "catppuccin",
     config = function()
-      require("themer").setup({
-        colorscheme = "catppuccin",
-        styles = {
-          ["function"]    = { style = 'italic' },
-          functionbuiltin = { style = 'italic' },
-          variable        = { style = 'italic' },
-          variableBuiltIn = { style = 'italic' },
-          parameter       = { style = 'italic' },
-        },
-      })
-    end
+      require("catppuccin").setup {}
+    end,
   },
+  -- {
+  --   "themercorp/themer.lua",
+  --   event = { "User AstroFile" },
+  --   config = function()
+  --     require("themer").setup({
+  --       colorscheme = "catppuccin",
+  --       styles = {
+  --         ["function"]    = { style = 'italic' },
+  --         functionbuiltin = { style = 'italic' },
+  --         variable        = { style = 'italic' },
+  --         variableBuiltIn = { style = 'italic' },
+  --         parameter       = { style = 'italic' },
+  --       },
+  --     })
+  --   end
+  -- },
   {
     "Wansmer/treesj",
     dependencies = { "nvim-treesitter/nvim-treesitter" },

@@ -65,7 +65,7 @@ return {
                 "NvimTree",
                 "OverseerList",
                 "aerial",
-                "dap-repl",
+                "dap%-repl",
                 "dapui_.",
                 "edgy",
                 "neo%-tree",

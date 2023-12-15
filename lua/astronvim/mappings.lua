@@ -178,6 +178,8 @@ if is_available "gitsigns.nvim" then
   maps.n["<leader>gS"] = { function() require("gitsigns").stage_buffer() end, desc = "Stage Git buffer" }
   maps.n["<leader>gu"] = { function() require("gitsigns").undo_stage_hunk() end, desc = "Unstage Git hunk" }
   maps.n["<leader>gd"] = { function() require("gitsigns").diffthis() end, desc = "View Git diff" }
+  maps.n["<leader>gg"] = { "<cmd>Git!<cr>", desc = "View Git Fugitive" }
+  maps.n["<leader>gv"] = { "<cmd>Gvdiffsplit!<cr>", desc = "View Vertical Three way diff split" }
 end
 
 -- Git Worktrees

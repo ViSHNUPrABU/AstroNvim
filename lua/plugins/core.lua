@@ -267,7 +267,7 @@ return {
     end,
   },
   {
-    "ThePrimeagen/git-worktree.nvim",
+    "ViSHNUPrABU/git-worktree.nvim",
   },
   -- {
   --   "neoclide/coc.nvim",

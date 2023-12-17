@@ -1,4 +1,6 @@
 return {
+  VimIcon = "",
+  ScrollText = "",
   ActiveLSP = "",
   ActiveTS = "",
   ArrowLeft = "",

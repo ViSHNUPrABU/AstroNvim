@@ -13,32 +13,90 @@ return {
             }, args.buf)
         end,
       },
-      statusline = { -- statusline
+      statusline = {
+        -- default highlight for the entire statusline
         hl = { fg = "fg", bg = "bg" },
-        -- status.component.mode(),
-        status.component.mode({
-          mode_text = {
-            padding = {
-              left = 1, right = 1,
-            },
-          },
+        -- each element following is a component in astronvim.utils.status module
+        -- NvChad Statusline Styles
+        status.component.mode {
+          mode_text = { icon = { kind = "VimIcon", padding = { right = 1, left = 1 } } },
+          padding = { right = 1 },
           surround = {
-            separator = "left",
-            color = function() return { main = status.hl.mode_bg(), } end,
+            separator = "nvchad_left",
+            color = function() return { main = status.hl.mode_bg() } end,
           },
-        }),
-        status.component.git_branch(),
-        status.component.file_info { filetype = {}, filename = false, file_modified = false },
-        status.component.git_diff(),
-        status.component.diagnostics(),
+        },
+        status.component.file_info {
+          file_icon = { padding = { left = 0 } },
+          filename = false,
+          filetype = {},
+          padding = { right = 1 },
+          surround = { separator = "nvchad_left", condition = false },
+        },
+        status.component.git_branch { surround = { separator = "none" } },
+        status.component.git_diff { padding = { left = 1 }, surround = { separator = "none" } },
         status.component.fill(),
-        status.component.cmd_info(),
+        status.component.lsp { lsp_client_names = false, surround = { separator = "none", color = "bg" } },
         status.component.fill(),
-        status.component.lsp(),
-        status.component.treesitter(),
-        status.component.nav(),
-        -- status.component.mode { surround = { separator = "right" } },
+        status.component.diagnostics { surround = { separator = "nvchad_right" } },
+        status.component.lsp { lsp_progress = false, surround = { separator = "nvchad_right" } },
+        {
+          status.component.builder {
+            { provider = require("astronvim.utils").get_icon "FolderClosed" },
+            padding = { right = 1 },
+            hl = { fg = "bg" },
+            surround = { separator = "nvchad_right", color = "buffer_picker_fg" },
+          },
+          status.component.file_info {
+            filename = { fname = function(nr) return vim.fn.getcwd(nr) end, padding = { left = 1 } },
+            file_icon = false,
+            file_modified = false,
+            file_read_only = false,
+            surround = { separator = "none", condition = false },
+          },
+        },
+        {
+          status.component.builder {
+            { provider = require("astronvim.utils").get_icon "ScrollText" },
+            padding = { right = 1 },
+            hl = { fg = "bg" },
+            surround = { separator = "nvchad_right", color = { main = "treesitter_fg" } },
+          },
+          status.component.nav {
+            percentage = { padding = { left = 1, right = 1 }, },
+            ruler = { padding = { left = 1 }, },
+            scrollbar = false,
+            surround = { separator = "none" },
+          },
+        },
       },
+      -- AstroNvim Statusline Styles
+      -- statusline = { -- statusline
+      --   hl = { fg = "fg", bg = "bg" },
+      --   -- status.component.mode(),
+      --   status.component.mode({
+      --     mode_text = {
+      --       padding = {
+      --         left = 1, right = 1,
+      --       },
+      --     },
+      --     surround = {
+      --       separator = "left",
+      --       color = function() return { main = status.hl.mode_bg(), } end,
+      --     },
+      --   }),
+      --   status.component.git_branch(),
+      --   status.component.file_info { filetype = {}, filename = false, file_modified = false },
+      --   status.component.git_diff(),
+      --   status.component.diagnostics(),
+      --   status.component.fill(),
+      --   status.component.cmd_info(),
+      --   status.component.fill(),
+      --   status.component.lsp(),
+      --   status.component.treesitter(),
+      --   status.component.nav(),
+      --   -- status.component.mode { surround = { separator = "right" } },
+      -- },
       winbar = { -- winbar
         init = function(self) self.bufnr = vim.api.nvim_get_current_buf() end,
         fallthrough = false,

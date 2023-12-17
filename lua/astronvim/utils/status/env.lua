@@ -75,6 +75,9 @@ M.separators = astronvim.user_opts("heirline.separators", {
   tab = { "", " " },
   breadcrumbs = "  ",
   path = "  ",
+  nvchad_left = { "", " " },
+  nvchad_right = { " ", "" },
+  nvchad_tab = { "", "" },
 })
 
 M.attributes = astronvim.user_opts("heirline.attributes", {

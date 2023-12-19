@@ -38,6 +38,7 @@ return {
         status.component.fill(),
         status.component.lsp { lsp_client_names = false, surround = { separator = "none", color = "bg" } },
         status.component.fill(),
+        status.component.cmd_info(),
         status.component.diagnostics { surround = { separator = "nvchad_right" } },
         status.component.lsp { lsp_progress = false, surround = { separator = "nvchad_right" } },
         {
